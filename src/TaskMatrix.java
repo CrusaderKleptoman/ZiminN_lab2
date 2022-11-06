@@ -1,27 +1,17 @@
+import java.util.Scanner;
+
 public class TaskMatrix {
 
     private int[][] matrix;
 
-
     TaskMatrix()
     {
-        this.matrix = new int[0][0];
+        this.matrix = new int[1][1];
     }
+    TaskMatrix(int rows, int columns) {this.matrix = new int[rows][columns];}
+    TaskMatrix(int[][] matrix) {this.matrix = matrix;}
 
-    TaskMatrix(int rows, int columns)
-    {
-        this.matrix = new int[rows][columns];
-        for(int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                matrix[i][j] = 0;
-            }
-        }
-    }
-
-    TaskMatrix(int[][] matrix)
-    {
-        this.matrix = matrix;
-    }
+    public void setElemMatrix(int elemMatrix, int rows, int columns) {this.matrix[rows][columns] = elemMatrix;}
 
     private int getRow(){return matrix.length;}
     private int getColumns(int n){return matrix[n].length;}
@@ -97,6 +87,18 @@ public class TaskMatrix {
                 count++;
             }
         }
+        for (int i = 0; i < oneDimensionMatrix[0].length - 1; i++) {
+            for (int j = oneDimensionMatrix[0].length - 1; j > i; j--) {
+                if (oneDimensionMatrix[0][j - 1] > oneDimensionMatrix[0][j])
+                {
+                    int swap = oneDimensionMatrix[0][j - 1];
+                    oneDimensionMatrix[0][j - 1] = oneDimensionMatrix[0][j];
+                    oneDimensionMatrix[0][j] = swap;
+                }
+            }
+        }
+
+
         this.matrix = oneDimensionMatrix;
     }
 }
